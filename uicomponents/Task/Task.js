@@ -15,14 +15,17 @@ import Animated, {
 } from "react-native-reanimated";
 
 function Task(props) {
-  const deleteAlert = () =>
-    Alert.alert("Task", "Delete this task?", [
-      {
-        text: "Cancel",
-        style: "cancel",
-      },
-      { text: "OK", onPress: () => props.delete(props.index) },
-    ]);
+  const deleteAlert = () => {
+    // Alert.alert("Task", "Delete this task?", [
+    //   {
+    //     text: "Cancel",
+    //     style: "cancel",
+    //   },
+    //   { text: "OK", onPress: () => props.delete(props.index) },
+    // ]);
+    props.delete(props.index);
+
+  }
 
   function toggle() {
     props.toggle(props.index);

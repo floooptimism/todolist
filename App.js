@@ -28,6 +28,8 @@ export default function App() {
   const [tasks, setTasks] = useState([
     ["Currently, there is no persistent storage.", false],
     ["Add new task using the button above.", false],
+    ["Long press on the task to delete it.", false],
+    ["Tap the little box to mark it as completed.", false],
  
   ]);
 
