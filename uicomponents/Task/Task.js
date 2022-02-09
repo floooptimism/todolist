@@ -8,6 +8,11 @@ import {
   Touchable,
   TouchableNativeFeedback,
 } from "react-native";
+import Animated, {
+  LightSpeedInLeft,
+  LightSpeedOutLeft,
+  Layout,
+} from "react-native-reanimated";
 
 function Task(props) {
   const deleteAlert = () =>
@@ -19,26 +24,30 @@ function Task(props) {
       { text: "OK", onPress: () => props.delete(props.index) },
     ]);
 
-  
-    function toggle(){
-      props.toggle(props.index);
-    }
+  function toggle() {
+    props.toggle(props.index);
+  }
 
   return (
-      <TouchableNativeFeedback
-        onLongPress={deleteAlert}>
+    <Animated.View
+      entering={LightSpeedInLeft}
+      layout={Layout.springify()}
+      exiting={LightSpeedOutLeft}
+    >
+      <TouchableNativeFeedback onLongPress={deleteAlert}>
         <View style={props.completed ? styles.taskCompleted : styles.task}>
-            <View style={styles.textContainer}>
-              <Text style={props.completed ? styles.textCompleted : styles.text}>
-                {props.text}
-              </Text>
-            </View>
-            <TouchableOpacity
-              onPress={toggle}
-              style={props.completed ? styles.checkBoxCompleted : styles.checkBox}
-            ></TouchableOpacity>
+          <View style={styles.textContainer}>
+            <Text style={props.completed ? styles.textCompleted : styles.text}>
+              {props.text}
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={toggle}
+            style={props.completed ? styles.checkBoxCompleted : styles.checkBox}
+          ></TouchableOpacity>
         </View>
       </TouchableNativeFeedback>
+    </Animated.View>
   );
 }
 
@@ -80,7 +89,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 18,
-    color: "#4f4f4f",
+    color: "#787878",
   },
 
   textCompleted: {
@@ -91,16 +100,16 @@ const styles = StyleSheet.create({
 
   checkBox: {
     borderRadius: 5,
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
     marginLeft: "auto",
-    backgroundColor: "#b8b8b8",
+    backgroundColor: "#c9c9c9",
   },
 
   checkBoxCompleted: {
     borderRadius: 5,
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
     marginLeft: "auto",
     backgroundColor: "#bdd9c7",
   },
